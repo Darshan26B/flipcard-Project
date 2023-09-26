@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">flipcard-Project</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Sign_Up"><b>Sign Up?</b></string>
+    <string name="Login_IN"><b>Login IN</b></string>
+    <string name="User_Name">User Name</string>
+    <string name="E_mail">E-mail</string>
+    <string name="Password">Password</string>
+    <string name="Forget_Password"><b>Forget Password</b></string>
+    <string name="Submit"><b>Submit</b></string>
+    <string name="Google">Sign In with Google</string>
+</resources>

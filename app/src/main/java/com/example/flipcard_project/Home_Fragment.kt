@@ -40,56 +40,13 @@ class Home_Fragment : Fragment() {
         recyclerView.hasFixedSize()
         itemlist = arrayListOf<Product_Model>()
 
-        binding.BtnCreateNote.setOnClickListener {
-            var intent = Intent(context, Add_Fragment::class.java)
-            startActivity(intent)
-
-        }
-
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-
-
-                var temarr = ArrayList<Product_Model>()
-
-                for (arr in NoteList) {
-                    if (arr.product_name?.lowercase()?.contains(newText!!.lowercase()) == true){
-
-                        temarr.add(arr)
-                    }
-
-                }
-                adapter.setNote(temarr)
-                return true
-            }
-
-        })
+ 
 
 
         getItemData()
-        ShowNotes()
-        return binding.root
+         return binding.root
     }
 
-    private fun ShowNotes() {
-
-
-        if (NoteList.size > 0) {
-
-            binding.emptyNote.visibility = View.INVISIBLE
-            binding.rcvProduct.visibility = View.VISIBLE
-
-        } else {
-            binding.emptyNote.visibility = View.VISIBLE
-            binding.rcvProduct.visibility = View.INVISIBLE
-        }
-
-    }
 
     private fun getItemData() {
         reference = FirebaseDatabase.getInstance().getReference("product")

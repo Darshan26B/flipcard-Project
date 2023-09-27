@@ -18,53 +18,12 @@
         android:visibility="visible" />
 
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/note_bg"
-        android:focusable="false"
-        android:gravity="center"
-        app:closeIcon="@drawable/baseline_close_24"
-        app:iconifiedByDefault="false"
-        app:queryHint="Search Note"
-        app:searchHintIcon="@null"
-        app:searchIcon="@drawable/baseline_search_24" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvProduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"/>
-    <LinearLayout
-        android:id="@+id/emptyNote"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Empty Note"
-            android:textColor="@color/black"
-            android:textSize="30dp"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/BtnCreateNote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create Note"
-            android:textColor="@color/white"
-            android:backgroundTint="#03A9F4"
-            android:layout_marginTop="10dp"/>
-    </LinearLayout>
 
 
 </LinearLayout>

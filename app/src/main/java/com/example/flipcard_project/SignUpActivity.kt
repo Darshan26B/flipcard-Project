@@ -19,6 +19,8 @@ class SignUpActivity : AppCompatActivity() {
 
         Auth = FirebaseAuth.getInstance()
 
+        checkUserLogged()
+
         binding.btnSubmit.setOnClickListener {
 
             var Email = binding.email.text.toString().trim()
@@ -53,4 +55,15 @@ class SignUpActivity : AppCompatActivity() {
 
 
     }
+
+    private fun checkUserLogged() {
+        if (Auth.currentUser != null) {
+
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+    }
+
 }

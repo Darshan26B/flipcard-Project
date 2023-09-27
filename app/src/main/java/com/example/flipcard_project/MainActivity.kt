@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity() {
                     R.id.item_home -> {
                         loadFragment(Home_Fragment())
                     }
+                    R.id.item_plus -> {
+                        loadFragment(Add_Fragment())
+                    }
                     R.id.item_Profile -> {
                         loadFragment(Profile_Fragment())
                     }

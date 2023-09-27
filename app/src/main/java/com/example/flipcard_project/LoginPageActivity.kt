@@ -1,5 +1,6 @@
 package com.example.flipcard_project
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -13,19 +14,31 @@ class LoginPageActivity : AppCompatActivity() {
 
     lateinit var binding: LoginPageBinding
     lateinit var Auth: FirebaseAuth
-    lateinit var SharedP: SharedPreferences
-    lateinit var editor: SharedPreferences.Editor
+//    lateinit var SharedP: SharedPreferences
+//    lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LoginPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Auth = FirebaseAuth.getInstance()
+
+//        SharedP = getSharedPreferences("First Time", Context.MODE_PRIVATE)
+//        var emailShareP = SharedP.getString("Email", "")
+//        var PassworrdShareP = SharedP.getString("Password", "")
+//
+//        if (emailShareP != "" && PassworrdShareP != "") {
+//            var intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//        }
+
+        checkUserLogged()
 
 
         binding.btnSubmit.setOnClickListener {
-            var Email = binding.email.text.toString().trim()
-            var Password = binding.password.text.toString().trim()
+            var Email = binding.email.text.toString()
+            var Password = binding.password.text.toString()
 
             if (Email.isEmpty()) {
                 binding.email.error = "Enter Your Email"
@@ -39,7 +52,7 @@ class LoginPageActivity : AppCompatActivity() {
             Auth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener {
                 if (it.isSuccessful) {
                     Toast.makeText(this, "Successful", Toast.LENGTH_LONG).show()
-                    var intent = Intent(this, Home_Fragment::class.java)
+                    var intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
             }.addOnFailureListener {
@@ -48,12 +61,12 @@ class LoginPageActivity : AppCompatActivity() {
             }
 
             //login page one time show
-
-            editor = SharedP.edit()
-            editor.putString("Email", Email)
-            editor.putString("Password", Password)
-            editor.apply()
-            editor.commit()
+//
+//            editor = SharedP.edit()
+//            editor.putString("Email", Email)
+//            editor.putString("Password", Password)
+//            editor.apply()
+//            editor.commit()
 
         }
         binding.SignUp.setOnClickListener {
@@ -61,6 +74,26 @@ class LoginPageActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        binding.ForgetPassword.setOnClickListener {
 
+            var Email = binding.email.text.toString()
+            Auth.sendPasswordResetEmail(Email)
+
+
+
+            Toast.makeText(this, "Check Your Mail", Toast.LENGTH_LONG).show()
+
+        }
+
+
+    }
+
+    private fun checkUserLogged() {
+        if (Auth.currentUser != null) {
+            var intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
     }
 }
